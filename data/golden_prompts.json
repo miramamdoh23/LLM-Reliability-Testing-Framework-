@@ -1,0 +1,50 @@
+[
+  {
+    "id": "EDA_001",
+    "prompt": "Explain what an EDA tool does in simple terms",
+    "category": "EDA_basics",
+    "expected_length": "short"
+  },
+  {
+    "id": "EDA_002",
+    "prompt": "What is the difference between analog and digital circuit design?",
+    "category": "EDA_basics",
+    "expected_length": "medium"
+  },
+  {
+    "id": "GENAI_001",
+    "prompt": "How does context memory work in conversational AI?",
+    "category": "GenAI",
+    "expected_length": "medium"
+  },
+  {
+    "id": "GENAI_002",
+    "prompt": "Explain the role of temperature parameter in LLM responses",
+    "category": "GenAI",
+    "expected_length": "medium"
+  },
+  {
+    "id": "QA_001",
+    "prompt": "What are the key differences between unit testing and integration testing?",
+    "category": "QA_basics",
+    "expected_length": "medium"
+  },
+  {
+    "id": "QA_002",
+    "prompt": "Why is regression testing important in AI systems?",
+    "category": "AI_QA",
+    "expected_length": "medium"
+  },
+  {
+    "id": "EDGE_001",
+    "prompt": "",
+    "category": "edge_case",
+    "expected_length": "error"
+  },
+  {
+    "id": "EDGE_002",
+    "prompt": "a",
+    "category": "edge_case",
+    "expected_length": "short"
+  }
+]

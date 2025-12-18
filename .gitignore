@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+venv/
+env/
+.env
+*.log
+reports/*.html
+baseline_results/
+.vscode/
+.idea/
+*.swp

@@ -1,0 +1,44 @@
+{
+  "EDA_001": {
+    "must_include": ["design", "electronic", "circuit"],
+    "must_not_include": ["medical", "finance", "cooking"],
+    "tone": "informative",
+    "min_length": 50,
+    "max_length": 500
+  },
+  "EDA_002": {
+    "must_include": ["analog", "digital", "signal"],
+    "must_not_include": ["unrelated", "irrelevant"],
+    "tone": "technical",
+    "min_length": 100,
+    "max_length": 600
+  },
+  "GENAI_001": {
+    "must_include": ["context", "memory", "conversation"],
+    "must_not_include": ["hardware", "mechanical"],
+    "tone": "explanatory",
+    "min_length": 80,
+    "max_length": 500
+  },
+  "GENAI_002": {
+    "must_include": ["temperature", "random", "creative"],
+    "must_not_include": ["weather", "climate"],
+    "tone": "technical",
+    "min_length": 80,
+    "max_length": 500
+  },
+  "QA_001": {
+    "must_include": ["unit", "integration", "test"],
+    "must_not_include": ["cooking", "sports"],
+    "tone": "professional",
+    "min_length": 100,
+    "max_length": 600
+  },
+  "QA_002": {
+    "must_include": ["regression", "testing", "AI"],
+    "must_not_include": ["unrelated"],
+    "tone": "professional",
+    "min_length": 80,
+    "max_length": 500
+  }
+}
