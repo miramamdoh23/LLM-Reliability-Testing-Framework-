@@ -465,6 +465,18 @@ This is a portfolio project, but suggestions are welcome! Key areas:
 - Documentation improvements
 
 ---
+## 📊 LLM Reliability & Regression Test Report
+
+This project includes automated reliability and regression testing
+for Large Language Models (LLMs) using Pytest.
+
+The report below demonstrates:
+- Behavioral consistency validation
+- Regression detection across prompt changes
+- Non-deterministic output handling
+
+![LLM Reliability Report](screenshots/llm_reliability_pytest_report.png)
+
 
 ## 👩‍💻 Author
 
@@ -504,3 +516,4 @@ Built as part of my journey into AI Quality Assurance, showcasing advanced testi
 ⭐ **If you find this framework valuable for your AI testing needs, please consider giving it a star!**
 
 **Built with 🧠 and ☕ by Mira Mamdoh**
+
