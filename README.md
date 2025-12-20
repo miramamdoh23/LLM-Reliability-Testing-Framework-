@@ -1,58 +1,56 @@
-# 🧠 LLM Reliability & Regression Testing Framework
+# LLM Reliability & Regression Testing Framework
 
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
 [![Pytest](https://img.shields.io/badge/Testing-Pytest-green.svg)](https://pytest.org/)
 [![Sentence-Transformers](https://img.shields.io/badge/AI-Sentence%20Transformers-orange.svg)](https://www.sbert.net/)
 [![Tests](https://img.shields.io/badge/Tests-12%2F13%20Passing-success.svg)](tests/)
 
-> **Advanced AI QA Framework for testing non-deterministic LLM systems**
+Advanced AI QA Framework for testing non-deterministic LLM systems.
 
-A comprehensive testing framework designed specifically for Large Language Models (LLMs) that addresses the unique challenges of testing non-deterministic AI systems. This framework validates **semantic consistency**, detects **behavioral regressions**, and ensures **reliability** across model updates.
-
----
-
-## 📑 Table of Contents
-
-- [Problem Statement](#-problem-statement)
-- [Solution](#-our-solution)
-- [Architecture](#️-architecture)
-- [Quick Start](#-quick-start)
-- [Test Results](#-test-results)
-- [Key Features](#-key-features)
-- [Test Scenarios](#-test-scenarios)
-- [Technical Implementation](#-technical-implementation)
-- [Why This Matters](#-why-this-matters)
-- [Interview Discussion Example](#-example-interview-discussion)
-- [Skills Demonstrated](#-skills-demonstrated)
-- [Future Enhancements](#-future-enhancements)
-- [Key Concepts](#-key-concepts-explained)
-- [Contributing](#-contributing)
-- [Author](#-author)
+A comprehensive testing framework designed specifically for Large Language Models (LLMs) that addresses the unique challenges of testing non-deterministic AI systems. This framework validates semantic consistency, detects behavioral regressions, and ensures reliability across model updates.
 
 ---
 
-## 🎯 Problem Statement
+## Table of Contents
+
+- [Problem Statement](#problem-statement)
+- [Solution](#solution)
+- [Architecture](#architecture)
+- [Quick Start](#quick-start)
+- [Test Results](#test-results)
+- [Key Features](#key-features)
+- [Test Scenarios](#test-scenarios)
+- [Technical Implementation](#technical-implementation)
+- [Why This Matters](#why-this-matters)
+- [Interview Discussion Example](#interview-discussion-example)
+- [Skills Demonstrated](#skills-demonstrated)
+- [Future Enhancements](#future-enhancements)
+- [Key Concepts](#key-concepts-explained)
+- [Author](#author)
+
+---
+
+## Problem Statement
 
 Traditional testing approaches fail for LLMs because:
 
-- ❌ **Non-deterministic outputs** - Same input → Different outputs
-- ❌ **String matching doesn't work** - Semantically identical ≠ Textually identical
-- ❌ **No exact "expected output"** - Need behavioral validation instead
-- ❌ **Silent degradation** - Model updates can break behavior without errors
+- Non-deterministic outputs: Same input produces different outputs
+- String matching doesn't work: Semantically identical outputs are not textually identical
+- No exact expected output: Need behavioral validation instead
+- Silent degradation: Model updates can break behavior without errors
 
-### ✅ Our Solution
+### Solution
 
 This framework uses:
 
-- ✅ **Semantic similarity** instead of string comparison
-- ✅ **Behavioral validation** instead of exact matching
-- ✅ **Statistical reliability metrics** for consistency
-- ✅ **Baseline comparison** for regression detection
+- Semantic similarity instead of string comparison
+- Behavioral validation instead of exact matching
+- Statistical reliability metrics for consistency
+- Baseline comparison for regression detection
 
 ---
 
-## 🏗️ Architecture
-
+## Architecture
 ```
 llm-reliability-testing/
 │
@@ -77,10 +75,9 @@ llm-reliability-testing/
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Installation
-
 ```bash
 # Clone repository
 git clone https://github.com/miramamdoh23/LLM-Reliability-Testing-Framework-.git
@@ -95,7 +92,6 @@ pip install -r requirements.txt
 ```
 
 ### Run Tests
-
 ```bash
 # Run all tests
 pytest tests/ -v
@@ -112,10 +108,9 @@ pytest tests/ --html=reports/test_report.html -v
 
 ---
 
-## 🧪 Test Results
+## Test Results
 
-### ✅ **Current Status: 12/13 Tests Passing (92%)**
-
+### Current Status: 12/13 Tests Passing (92%)
 ```bash
 ======================== test session starts ========================
 collected 13 items
@@ -138,16 +133,15 @@ tests/test_reliability.py::test_stability_score_calculation PASSED
 ============= 12 passed, 1 failed in 25.43s =============
 ```
 
-**Note:** The occasional failure is expected due to LLM non-determinism. 92% stability is excellent for AI systems.
+Note: The occasional failure is expected due to LLM non-determinism. 92% stability is excellent for AI systems.
 
 ---
 
-## 📊 Key Features
+## Key Features
 
-### 1️⃣ **Semantic Similarity Testing**
+### 1. Semantic Similarity Testing
 
-Instead of comparing text strings, we use **sentence embeddings** to measure semantic similarity:
-
+Instead of comparing text strings, we use sentence embeddings to measure semantic similarity:
 ```python
 from utils.similarity import SemanticSimilarity
 
@@ -159,18 +153,17 @@ score = similarity_checker.calculate_similarity(
 # Score: 0.87 (semantically similar, though worded differently)
 ```
 
-**Technology:** Sentence-BERT (all-MiniLM-L6-v2)
+**Technology**: Sentence-BERT (all-MiniLM-L6-v2)
 
-**Why Sentence-BERT?**
-- ✅ Fast inference (~10ms per sentence)
-- ✅ High quality embeddings
-- ✅ Works offline after download
-- ✅ Multilingual support available
+**Why Sentence-BERT**:
+- Fast inference (approximately 10ms per sentence)
+- High quality embeddings
+- Works offline after download
+- Multilingual support available
 
-### 2️⃣ **Reliability Testing**
+### 2. Reliability Testing
 
 Measures output consistency across multiple runs:
-
 ```python
 # Run prompt 20 times
 responses = llm_client.generate_multiple(prompt, n=20)
@@ -183,16 +176,15 @@ reliability_score = calculate_reliability_score(similarities, threshold=0.75)
 # Score: 92% → Highly reliable
 ```
 
-**Metrics:**
+**Metrics**:
 - Average similarity
 - Minimum/maximum similarity
 - Standard deviation (stability)
 - Outlier detection
 
-### 3️⃣ **Behavioral Validation**
+### 3. Behavioral Validation
 
 Validates responses against expected behaviors instead of exact text:
-
 ```python
 expected_behavior = {
     "must_include": ["design", "electronic", "circuit"],
@@ -206,10 +198,9 @@ result = validator.validate_all(response, expected_behavior)
 # Returns detailed validation results for each criterion
 ```
 
-### 4️⃣ **Regression Detection**
+### 4. Regression Detection
 
 Compares new outputs against saved baselines:
-
 ```python
 # Save baseline
 baseline = llm_client.generate(prompt, temperature=0.5)
@@ -223,17 +214,16 @@ regression = detect_regression(current, baseline, similarity, threshold=0.75)
 # Returns: {"regression_detected": False, "severity": "NONE"}
 ```
 
-**Severity Levels:**
-- 🟢 **NONE**: similarity ≥ threshold
-- 🟡 **LOW**: threshold - 0.05
-- 🟠 **MEDIUM**: threshold - 0.15
-- 🔴 **HIGH**: threshold - 0.30
-- ⛔ **CRITICAL**: < threshold - 0.30
+**Severity Levels**:
+- NONE: similarity greater than or equal to threshold
+- LOW: threshold minus 0.05
+- MEDIUM: threshold minus 0.15
+- HIGH: threshold minus 0.30
+- CRITICAL: less than threshold minus 0.30
 
-### 5️⃣ **Temperature Effect Analysis**
+### 5. Temperature Effect Analysis
 
 Tests how temperature parameter affects consistency:
-
 ```python
 # Low temperature = more consistent
 low_temp_outputs = generate_multiple(prompt, temperature=0.1, n=10)
@@ -248,39 +238,38 @@ high_consistency = calculate_consistency(high_temp_outputs)
 
 ---
 
-## 🎯 Test Scenarios
+## Test Scenarios
 
 ### Reliability Tests (7 tests)
 
 | Test | Description | Status |
 |------|-------------|--------|
-| **Single Prompt Consistency** | Same prompt × 10 runs → similarity > 0.70 | ✅ PASS |
-| **Temperature Effect** | Lower temp → higher consistency | ✅ PASS |
-| **Behavioral Validation** | Responses meet behavioral criteria | ✅ PASS |
-| **Multiple Prompts** | 80%+ prompts show good reliability | ✅ PASS |
-| **Outlier Detection** | Identify significantly different outputs | ✅ PASS |
-| **Empty Prompt Handling** | Graceful handling of edge cases | ✅ PASS |
-| **Stability Score** | Calculate & validate stability metrics | ✅ PASS |
+| Single Prompt Consistency | Same prompt x 10 runs → similarity > 0.70 | PASS |
+| Temperature Effect | Lower temp → higher consistency | PASS |
+| Behavioral Validation | Responses meet behavioral criteria | PASS |
+| Multiple Prompts | 80%+ prompts show good reliability | PASS |
+| Outlier Detection | Identify significantly different outputs | PASS |
+| Empty Prompt Handling | Graceful handling of edge cases | PASS |
+| Stability Score | Calculate & validate stability metrics | PASS |
 
 ### Regression Tests (6 tests)
 
 | Test | Description | Status |
 |------|-------------|--------|
-| **Baseline Comparison** | Current vs baseline similarity | ✅ PASS |
-| **Prompt Modification** | Small changes have predictable impact | ✅ PASS |
-| **Model Version Comparison** | Cross-version semantic consistency | ✅ PASS |
-| **Parameter Change Impact** | Parameter updates don't break behavior | ✅ PASS |
-| **Baseline Creation** | Generate baselines for golden prompts | ✅ PASS |
-| **Report Generation** | Comprehensive regression reports | ✅ PASS |
+| Baseline Comparison | Current vs baseline similarity | PASS |
+| Prompt Modification | Small changes have predictable impact | PASS |
+| Model Version Comparison | Cross-version semantic consistency | PASS |
+| Parameter Change Impact | Parameter updates don't break behavior | PASS |
+| Baseline Creation | Generate baselines for golden prompts | PASS |
+| Report Generation | Comprehensive regression reports | PASS |
 
 ---
 
-## 🔬 Technical Implementation
+## Technical Implementation
 
 ### Semantic Similarity Engine
 
-Uses **Sentence-BERT** for embedding-based similarity:
-
+Uses Sentence-BERT for embedding-based similarity:
 ```python
 class SemanticSimilarity:
     def __init__(self):
@@ -296,7 +285,6 @@ class SemanticSimilarity:
 ### LLM Client Wrapper
 
 Model-agnostic design supports any LLM:
-
 ```python
 class LLMClient:
     def __init__(self, api_key=None, model="gpt-4", use_mock=True):
@@ -313,7 +301,6 @@ class LLMClient:
 ### Metrics Calculation
 
 Statistical reliability metrics:
-
 ```python
 class ReliabilityMetrics:
     def calculate_reliability_score(self, similarities, threshold=0.75):
@@ -334,24 +321,24 @@ class ReliabilityMetrics:
 
 ---
 
-## 💡 Why This Matters
+## Why This Matters
 
 ### For AI QA Roles
 
-1. **GenAI Chatbots Testing** ✅
-   - This framework directly tests conversational AI
-   - Handles non-deterministic responses
-   - Validates semantic understanding
+**GenAI Chatbots Testing**:
+- This framework directly tests conversational AI
+- Handles non-deterministic responses
+- Validates semantic understanding
 
-2. **Regression Detection** ✅
-   - Critical for AI system updates
-   - Catches silent behavioral changes
-   - Prevents production issues
+**Regression Detection**:
+- Critical for AI system updates
+- Catches silent behavioral changes
+- Prevents production issues
 
-3. **Advanced Metrics** ✅
-   - Goes beyond pass/fail
-   - Quantifies reliability and stability
-   - Industry-leading approach
+**Advanced Metrics**:
+- Goes beyond pass/fail
+- Quantifies reliability and stability
+- Industry-leading approach
 
 ### Real-World Applications
 
@@ -363,112 +350,98 @@ class ReliabilityMetrics:
 
 ---
 
-## 📈 Example: Interview Discussion
+## Interview Discussion Example
 
-**Interviewer:** "How do you test LLMs when outputs aren't deterministic?"
+**Interviewer**: "How do you test LLMs when outputs aren't deterministic?"
 
-**You:** "I use semantic similarity instead of string matching. For example, if the model says 'Machine learning is a subset of AI' in one run and 'AI includes machine learning' in another, string comparison fails but semantic similarity scores 0.87 - correctly identifying them as equivalent. I've implemented this using Sentence-BERT embeddings with cosine similarity."
+**You**: "I use semantic similarity instead of string matching. For example, if the model says 'Machine learning is a subset of AI' in one run and 'AI includes machine learning' in another, string comparison fails but semantic similarity scores 0.87 - correctly identifying them as equivalent. I've implemented this using Sentence-BERT embeddings with cosine similarity."
 
-**Interviewer:** "How do you detect regressions?"
+**Interviewer**: "How do you detect regressions?"
 
-**You:** "I maintain baseline outputs for critical prompts. When testing a new model version or prompt update, I compare the semantic similarity of new outputs to baselines. Similarity below 0.75 triggers a regression alert with severity levels from LOW to CRITICAL based on the delta. This caught multiple issues before production in my testing."
+**You**: "I maintain baseline outputs for critical prompts. When testing a new model version or prompt update, I compare the semantic similarity of new outputs to baselines. Similarity below 0.75 triggers a regression alert with severity levels from LOW to CRITICAL based on the delta. This caught multiple issues before production in my testing."
 
-**Interviewer:** "What about flaky tests?"
+**Interviewer**: "What about flaky tests?"
 
-**You:** "That's actually a feature, not a bug. LLMs are inherently non-deterministic. My framework runs prompts multiple times and calculates statistical reliability metrics. A prompt with 92% reliability (meaning 92% of pairwise comparisons exceed the threshold) is considered stable enough for production. This is far more realistic than expecting 100% consistency from a probabilistic system."
+**You**: "That's actually a feature, not a bug. LLMs are inherently non-deterministic. My framework runs prompts multiple times and calculates statistical reliability metrics. A prompt with 92% reliability (meaning 92% of pairwise comparisons exceed the threshold) is considered stable enough for production. This is far more realistic than expecting 100% consistency from a probabilistic system."
 
 ---
 
-## 🎓 Skills Demonstrated
+## Skills Demonstrated
 
 ### Technical Skills
 
-- ✅ **AI/ML Testing** - Non-deterministic system validation
-- ✅ **NLP Techniques** - Sentence embeddings, semantic similarity
-- ✅ **Statistical Analysis** - Reliability metrics, outlier detection
-- ✅ **Python Development** - Clean, modular, testable code
-- ✅ **Test Automation** - Pytest, fixtures, parametrization
-- ✅ **API Design** - Model-agnostic client wrapper
+- AI/ML Testing: Non-deterministic system validation
+- NLP Techniques: Sentence embeddings, semantic similarity
+- Statistical Analysis: Reliability metrics, outlier detection
+- Python Development: Clean, modular, testable code
+- Test Automation: Pytest, fixtures, parametrization
+- API Design: Model-agnostic client wrapper
 
 ### AI QA Concepts
 
-- ✅ **Behavioral Testing** - Validate semantics not syntax
-- ✅ **Regression Detection** - Baseline comparison strategies
-- ✅ **Consistency Metrics** - Reliability and stability scores
-- ✅ **Edge Case Handling** - Empty prompts, outliers, errors
-- ✅ **Non-determinism** - Statistical approaches for probabilistic systems
+- Behavioral Testing: Validate semantics not syntax
+- Regression Detection: Baseline comparison strategies
+- Consistency Metrics: Reliability and stability scores
+- Edge Case Handling: Empty prompts, outliers, errors
+- Non-determinism: Statistical approaches for probabilistic systems
 
 ---
 
-## 🔮 Future Enhancements
+## Future Enhancements
 
-- [ ] **Real API Integration** - OpenAI, Anthropic Claude, Google Gemini
-- [ ] **Advanced Metrics** - BLEU, ROUGE, perplexity scores
-- [ ] **Performance Testing** - Latency, throughput benchmarks
-- [ ] **Adversarial Testing** - Prompt injection, jailbreak detection
-- [ ] **Multi-turn Conversations** - Context retention validation
-- [ ] **Hallucination Detection** - Fact-checking mechanisms
-- [ ] **Bias Testing** - Fairness and demographic parity metrics
-- [ ] **CI/CD Integration** - GitHub Actions, automated testing
-- [ ] **Dashboard** - Real-time monitoring and visualization
-- [ ] **Cost Tracking** - Token usage and API cost analysis
+- Real API Integration: OpenAI, Anthropic Claude, Google Gemini
+- Advanced Metrics: BLEU, ROUGE, perplexity scores
+- Performance Testing: Latency, throughput benchmarks
+- Adversarial Testing: Prompt injection, jailbreak detection
+- Multi-turn Conversations: Context retention validation
+- Hallucination Detection: Fact-checking mechanisms
+- Bias Testing: Fairness and demographic parity metrics
+- CI/CD Integration: GitHub Actions, automated testing
+- Dashboard: Real-time monitoring and visualization
+- Cost Tracking: Token usage and API cost analysis
 
 ---
 
-## 📚 Key Concepts Explained
+## Key Concepts Explained
 
 ### What is Semantic Similarity?
 
 Measures meaning, not text:
-
 ```
 Text 1: "The cat sat on the mat"
 Text 2: "A feline rested on the rug"
 
-String Similarity: 0% ❌
-Semantic Similarity: 85% ✅
+String Similarity: 0%
+Semantic Similarity: 85%
 ```
 
 ### What is LLM Reliability?
 
 Consistency across runs:
-
 ```
 Run 1: "AI helps automate tasks"
 Run 2: "Artificial intelligence enables automation"
 Run 3: "AI can automate repetitive work"
 
 Similarity Matrix: [1.0, 0.91, 0.88]
-Avg Similarity: 0.93 → 93% Reliable ✅
+Avg Similarity: 0.93 → 93% Reliable
 ```
 
 ### What is Regression in AI?
 
 Unexpected behavior changes:
-
 ```
 Before Update: Model correctly explains EDA tools
 After Update: Model confuses EDA with financial terms
 
-Similarity: 0.23 → CRITICAL Regression ⛔
+Similarity: 0.23 → CRITICAL Regression
 ```
 
 ---
 
-## 🤝 Contributing
+## LLM Reliability & Regression Test Report
 
-This is a portfolio project, but suggestions are welcome! Key areas:
-
-- Additional test scenarios
-- New similarity metrics
-- Real LLM integrations
-- Documentation improvements
-
----
-## 📊 LLM Reliability & Regression Test Report
-
-This project includes automated reliability and regression testing
-for Large Language Models (LLMs) using Pytest.
+This project includes automated reliability and regression testing for Large Language Models (LLMs) using Pytest.
 
 The report below demonstrates:
 - Behavioral consistency validation
@@ -477,33 +450,70 @@ The report below demonstrates:
 
 ![LLM Reliability Report](screenshots/llm_reliability_pytest_report.png)
 
+---
 
-## 👩‍💻 Author
+## Use Cases
+
+This framework is ideal for:
+
+- AI/ML Teams: Testing LLM-based systems and chatbots
+- QA Engineers: Learning AI-specific testing methodologies
+- DevOps Teams: CI/CD integration for AI applications
+- Portfolio Projects: Demonstrating professional AI QA skills
+
+---
+
+## Configuration
+
+### pytest.ini
+
+Configure test behavior, markers, and reporting options:
+```ini
+[pytest]
+testpaths = tests
+python_files = test_*.py
+addopts = -v --html=reports/test_report.html
+markers =
+    reliability: Reliability and consistency tests
+    regression: Regression detection tests
+    behavioral: Behavioral validation tests
+```
+
+---
+
+## Author
 
 **Mira Mamdoh Yousef Mossad**  
 AI QA Engineer | ML Testing Specialist | GenAI Enthusiast
 
-- 📧 Email: miramamdoh10@gmail.com
-- 💼 LinkedIn: [linkedin.com/in/mira-mamdoh-a9aa78224](https://www.linkedin.com/in/mira-mamdoh-a9aa78224)
-- 🐙 GitHub: [github.com/miramamdoh23](https://github.com/miramamdoh23)
+**Specializing in**:
+- AI/ML Quality Assurance
+- LLM Testing Methodologies
+- Test Automation & CI/CD
+- Semantic Validation
+
+**Connect**:
+- Email: miramamdoh10@gmail.com
+- LinkedIn: [linkedin.com/in/mira-mamdoh-a9aa78224](https://www.linkedin.com/in/mira-mamdoh-a9aa78224)
+- GitHub: [github.com/miramamdoh23](https://github.com/miramamdoh23)
 
 ---
 
-## 📝 License
+## License
 
 MIT License - Free to use with attribution
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 Built as part of my journey into AI Quality Assurance, showcasing advanced testing methodologies for non-deterministic AI systems. This framework addresses real-world challenges in testing Large Language Models and demonstrates professional approaches to AI QA.
 
-**Key Inspiration:** The unique challenges of testing LLMs at scale, where traditional testing approaches fail and new methodologies are required.
+**Key Inspiration**: The unique challenges of testing LLMs at scale, where traditional testing approaches fail and new methodologies are required.
 
 ---
 
-## 🎯 Perfect For
+## Perfect For
 
 - AI QA Engineer roles (Siemens, tech companies)
 - GenAI/LLM testing positions
@@ -513,7 +523,4 @@ Built as part of my journey into AI Quality Assurance, showcasing advanced testi
 
 ---
 
-⭐ **If you find this framework valuable for your AI testing needs, please consider giving it a star!**
-
-**Built with 🧠 and ☕ by Mira Mamdoh**
-
+**Built by Mira Mamdoh**
